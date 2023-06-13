@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getsigneluserapi, updateuserapi } from '../redux/actions'
 import { Form, Button, Container, Col, Row } from 'react-bootstrap'
 import { useForm, FormProvider } from 'react-hook-form'
+import { useRef } from 'react'
 
 const userAddEdit = () => {
     const methods = useForm()
@@ -14,10 +15,29 @@ const userAddEdit = () => {
     function getUser() {
         return dispatch(getsigneluserapi(id))
     }
+    const ref = useRef()
 
     useEffect(() => {
         getUser()
     }, [])
+
+    useEffect(() => {
+        if (singleData) {
+            ref.current.children[0].value = singleData.name
+            ref.current.children[1].value = singleData.email
+            ref.current.children[2].value = singleData.city
+            ref.current.children[3].value = singleData.flatno
+            ref.current.children[4].value = singleData.landmark
+            ref.current.children[5].value = singleData.zipcode
+        } else {
+            ref.current.children[0].value = ''
+            ref.current.children[1].value = ''
+            ref.current.children[2].value = ''
+            ref.current.children[3].value = ''
+            ref.current.children[4].value = ''
+            ref.current.children[5].value = ''
+        }
+    }, [singleData])
 
     const onSubmit = (data) => {
         // console.log(data)
@@ -39,62 +59,43 @@ const userAddEdit = () => {
             <Container>
                 <div>
                     <FormProvider {...methods}>
-                        <form onSubmit={methods.handleSubmit(onSubmit)}>
-                            <Row>
-                                <Col md={6}>
-                                    <div>
-                                        <span>
-                                            <b>Peronal Detail</b>
-                                        </span>
-                                        <br />
-                                        <input
-                                            type="text"
-                                            placeholder="Enter Laast Name"
-                                            defaultValue={singleData?.name}
-                                            {...methods.register('name')}
-                                        />
+                        <form
+                            onSubmit={methods.handleSubmit(onSubmit)}
+                            ref={ref}
+                        >
+                            <input
+                                type="text"
+                                placeholder="Enter Laast Name"
+                                {...methods.register('name')}
+                            />
 
-                                        <input
-                                            type="text"
-                                            placeholder="Enter Email"
-                                            defaultValue={singleData?.email}
-                                            {...methods.register('email')}
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder="Enter City"
-                                            defaultValue={singleData?.city}
-                                            {...methods.register('city')}
-                                        />
-                                    </div>
-                                </Col>
-                                <Col md={6}>
-                                    <div>
-                                        <span>
-                                            <b>Address</b>
-                                        </span>{' '}
-                                        <br />
-                                        <input
-                                            type="text"
-                                            placeholder="Enter flatno"
-                                            defaultValue={singleData?.flatno}
-                                            {...methods.register('flatno')}
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder="Enter landmark"
-                                            defaultValue={singleData?.landmark}
-                                            {...methods.register('landmark')}
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder="Enter zipcode"
-                                            defaultValue={singleData?.zipcode}
-                                            {...methods.register('zipcode')}
-                                        />
-                                    </div>
-                                </Col>
-                            </Row>
+                            <input
+                                type="text"
+                                placeholder="Enter Email"
+                                {...methods.register('email')}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Enter City"
+                                {...methods.register('city')}
+                            />
+
+                            <input
+                                type="text"
+                                placeholder="Enter flatno"
+                                {...methods.register('flatno')}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Enter landmark"
+                                {...methods.register('landmark')}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Enter zipcode"
+                                {...methods.register('zipcode')}
+                            />
+
                             <button
                                 type="submit    "
                                 style={{
