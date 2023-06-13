@@ -1,0 +1,121 @@
+{
+  "users": [
+    {
+      "name": "hello",
+      "email": "hello@g.com",
+      "flatno": "33",
+      "landmark": "doordarshan kendra",
+      "city": "palanpur",
+      "zipcode": "385110",
+      "id": 1
+    },
+    {
+      "name": "AMIT",
+      "email": "amit.multiqos@gmail.com",
+      "flatno": "000000",
+      "landmark": "opp, sal hospital",
+      "city": "ahmedabad",
+      "zipcode": "380015",
+      "id": 2
+    },
+    {
+      "name": "eeeeeeeee",
+      "email": "jj@jj.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 3
+    },
+    {
+      "name": "aaaaaaa",
+      "email": "tttttttttttt",
+      "flatno": "asdasd",
+      "landmark": "asdasd",
+      "city": "asdasdasd",
+      "zipcode": "asdasdasd",
+      "id": 4
+    },
+    {
+      "name": "zzzzzzzz",
+      "email": "hh@hh.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 5
+    },
+    {
+      "name": "bxvdffsf",
+      "email": "tt@tt.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 6
+    },
+    {
+      "name": "czasdads",
+      "email": "rr@rr.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 7
+    },
+    {
+      "name": "Aderer",
+      "email": "ww@ww.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 8
+    },
+    {
+      "name": "zsewEw",
+      "email": "ss@ss.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 9
+    },
+    {
+      "name": "nvbggf",
+      "email": "uu@uu.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 10
+    },
+    {
+      "name": "rtetertre",
+      "email": "tt@tt.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 11
+    },
+    {
+      "name": "iuyouyiyu",
+      "email": "oo@oo.com",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 12
+    },
+    {
+      "name": "lcjhgjdf",
+      "email": "aasddd",
+      "flatno": "00000111111",
+      "landmark": "opp, alphaone mall",
+      "city": "ahmedabad",
+      "zipcode": "968542",
+      "id": 13
+    }
+  ]
+}
