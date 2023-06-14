@@ -1,16 +1,19 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getsigneluserapi, updateuserapi } from '../redux/actions'
+import {
+    addNewuserapi,
+    getsigneluserapi,
+    updateuserapi
+} from '../redux/actions'
 import { Form, Button, Container, Col, Row } from 'react-bootstrap'
 import { useForm, FormProvider } from 'react-hook-form'
-import { useRef } from 'react'
-
+import { ErrorMessage } from '@hookform/error-message'
 const userAddEdit = () => {
-    const methods = useForm()
+    const methods = useForm({ criteriaMode: 'all' })
     const { id } = useParams()
     const dispatch = useDispatch()
-    const { singleData } = useSelector((state) => state.user)
+    const { singleData, error } = useSelector((state) => state.user)
 
     function getUser() {
         return dispatch(getsigneluserapi(id))
@@ -18,7 +21,16 @@ const userAddEdit = () => {
     const ref = useRef()
 
     useEffect(() => {
-        getUser()
+        if (id) {
+            getUser()
+        } else {
+            ref.current.children[0].value = ''
+            ref.current.children[1].value = ''
+            ref.current.children[2].value = ''
+            ref.current.children[3].value = ''
+            ref.current.children[4].value = ''
+            ref.current.children[5].value = ''
+        }
     }, [])
 
     useEffect(() => {
@@ -40,18 +52,22 @@ const userAddEdit = () => {
     }, [singleData])
 
     const onSubmit = (data) => {
-        // console.log(data)
-        dispatch(
-            updateuserapi({
-                ...singleData,
-                city: data.city,
-                name: data.name,
-                email: data.email,
-                flatno: data.flatno,
-                zipcode: data.zipcode,
-                landmark: data.landmark
-            })
-        )
+        if (!id) {
+            dispatch(addNewuserapi(data))
+        } else {
+            // console.log(data)
+            dispatch(
+                updateuserapi({
+                    ...singleData,
+                    city: data.city,
+                    name: data.name,
+                    email: data.email,
+                    flatno: data.flatno,
+                    zipcode: data.zipcode,
+                    landmark: data.landmark
+                })
+            )
+        }
     }
 
     return (
@@ -63,47 +79,76 @@ const userAddEdit = () => {
                             onSubmit={methods.handleSubmit(onSubmit)}
                             ref={ref}
                         >
+                            <ErrorMessage
+                                errors={methods.errors}
+                                name="userAddedit"
+                                render={({ messages }) =>
+                                    messages &&
+                                    Object.entries(messages).map(
+                                        ([type, message]) => (
+                                            <p key={type}>{message}</p>
+                                        )
+                                    )
+                                }
+                            />
                             <input
                                 type="text"
-                                placeholder="Enter Laast Name"
-                                {...methods.register('name')}
+                                placeholder="Enter Name"
+                                {...methods.register('name', {
+                                    required: true,
+                                    message: 'This input is number only.'
+                                })}
                             />
-
                             <input
                                 type="text"
                                 placeholder="Enter Email"
-                                {...methods.register('email')}
+                                {...methods.register('email', {
+                                    required: true,
+                                    message: 'This input is number only.'
+                                })}
                             />
                             <input
                                 type="text"
                                 placeholder="Enter City"
-                                {...methods.register('city')}
+                                {...methods.register('city', {
+                                    required: true,
+                                    message: 'This input is number only.'
+                                })}
                             />
 
                             <input
                                 type="text"
                                 placeholder="Enter flatno"
-                                {...methods.register('flatno')}
+                                {...methods.register('flatno', {
+                                    required: true,
+                                    message: 'This input is number only.'
+                                })}
                             />
                             <input
                                 type="text"
                                 placeholder="Enter landmark"
-                                {...methods.register('landmark')}
+                                {...methods.register('landmark', {
+                                    required: true,
+                                    message: 'This input is number only.'
+                                })}
                             />
                             <input
                                 type="text"
                                 placeholder="Enter zipcode"
-                                {...methods.register('zipcode')}
+                                {...methods.register('zipcode', {
+                                    required: true,
+                                    message: 'This input is number only.'
+                                })}
                             />
 
                             <button
-                                type="submit    "
+                                type="submit"
                                 style={{
                                     marginLeft: '250px',
                                     marginTop: '50px'
                                 }}
                             >
-                                Update
+                                {!id ? 'add ' : 'Update'}
                             </button>
                         </form>
                     </FormProvider>

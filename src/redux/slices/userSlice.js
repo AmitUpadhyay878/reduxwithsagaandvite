@@ -1,6 +1,11 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 
-const initialState = { value: 0, data: [], isloading: false, singleData: null }
+const initialState = {
+    value: 0,
+    data: [],
+    isloading: false,
+    singleData: null
+}
 
 const userSlice = createSlice({
     name: 'user',
@@ -35,11 +40,29 @@ const userSlice = createSlice({
                 })
             }
         },
+        adduser: (state, action) => {
+            let da = current(state)
+            return {
+                ...state,
+                data: action.payload
+            }
+        },
         deleteuser: (state, action) => {
             let da = current(state)
             return {
                 ...state,
                 data: da.data.filter((user) => user.id !== action.payload)
+            }
+        },
+        userlogin: (state, action) => {
+            const da = current(state);
+            return {
+              ...state,
+              data: da.data.filter(
+                (user) =>
+                  user.email === action.payload.email &&
+                  user.password === action.payload.password
+              ),
             }
         }
     },
@@ -57,6 +80,7 @@ export const {
     setsigaldata,
     updateuser,
     deleteuser,
-    setloading
+    setloading,
+    userlogin
 } = userSlice.actions
 export default userSlice.reducer

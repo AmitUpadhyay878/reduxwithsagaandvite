@@ -1,121 +1,160 @@
 {
-  "users": [
-    {
-      "name": "",
-      "email": "",
-      "flatno": "6644444",
-      "landmark": "",
-      "city": "",
-      "zipcode": "",
-      "id": 1
-    },
-    {
-      "name": "AMIT111111111",
-      "email": "",
-      "flatno": "",
-      "landmark": "",
-      "city": "",
-      "zipcode": "",
-      "id": 2
-    },
-    {
-      "name": "eeeeeeeeesfsdfdfdf",
-      "email": "amit.multiqos@gmail.com",
-      "flatno": "000000",
-      "landmark": "opp, sal hospital",
-      "city": "ahmedabad",
-      "zipcode": "380015",
-      "id": 3
-    },
-    {
-      "name": "aaaaaaa",
-      "email": "tttttttttttt",
-      "flatno": "asdasd",
-      "landmark": "asdasd",
-      "city": "asdasdasd",
-      "zipcode": "asdasdasd",
-      "id": 4
-    },
-    {
-      "name": "zzzzzzzz",
-      "email": "hh@hh.com",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 5
-    },
-    {
-      "name": "bxvdffsf",
-      "email": "tt@tt.com",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 6
-    },
-    {
-      "name": "czasdads",
-      "email": "rr@rr.com",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 7
-    },
-    {
-      "name": "Aderer",
-      "email": "ww@ww.com",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 8
-    },
-    {
-      "name": "zsewEw",
-      "email": "ss@ss.com",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 9
-    },
-    {
-      "name": "nvbggf",
-      "email": "uu@uu.com",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 10
-    },
-    {
-      "name": "rtetertre",
-      "email": "tt@tt.com",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 11
-    },
-    {
-      "name": "iuyouyiyu",
-      "email": "oo@oo.com",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 12
-    },
-    {
-      "name": "lcjhgjdf",
-      "email": "aasddd",
-      "flatno": "00000111111",
-      "landmark": "opp, alphaone mall",
-      "city": "ahmedabad",
-      "zipcode": "968542",
-      "id": 13
-    }
-  ]
+    "users": [
+        {
+            "name": "werwrw",
+            "email": "amit.multiqos@gmail.com",
+            "password": "123456",
+            "flatno": "6644444",
+            "landmark": "fsfsd",
+            "city": "Ahmedabas",
+            "zipcode": "385010",
+            "hobby": [],
+            "id": 1
+        },
+        {
+            "name": "Abc",
+            "email": "amit2.multiqos@gmail.com",
+            "password": "123456",
+            "flatno": "sdasd",
+            "landmark": "asdas",
+            "city": "Ahmedabas",
+            "zipcode": "385010",
+            "hobby": [],
+            "id": 4
+        },
+        {
+            "name": "bxvdffsf",
+            "email": "tt@tt.com",
+            "password": "123456",
+            "flatno": "00000111111",
+            "landmark": "opp, alphaone mall",
+            "city": "ahmedabad",
+            "zipcode": "968542",
+            "hobby": [],
+            "id": 7
+        },
+        {
+            "name": "nvbggf",
+            "email": "uu@uu.com",
+            "password": "123456",
+            "flatno": "00000111111",
+            "landmark": "opp, alphaone mall",
+            "city": "ahmedabad",
+            "zipcode": "968542",
+            "hobby": [],
+            "id": 10
+        },
+        {
+            "name": "rtetertre",
+            "email": "tt2@tt.com",
+            "password": "123456",
+            "flatno": "00000111111",
+            "landmark": "opp, alphaone mall",
+            "city": "ahmedabad",
+            "zipcode": "968542",
+            "hobby": [],
+            "id": 11
+        },
+        {
+            "name": "iuyouyiyu",
+            "email": "oo@oo.com",
+            "password": "123456",
+            "flatno": "00000111111",
+            "landmark": "opp, alphaone mall",
+            "city": "ahmedabad",
+            "zipcode": "968542",
+            "hobby": [],
+            "id": 12
+        },
+        {
+            "name": "Abc",
+            "email": "amit3.multiqos@gmail.com",
+            "password": "123456",
+            "city": "Ahmedabas",
+            "flatno": "4455",
+            "landmark": "sdad",
+            "zipcode": "385010",
+            "id": 13
+        },
+        {
+            "name": "hhhhhhhhhhh",
+            "email": "hhhhhhhhh@gmail.com",
+            "password": "123456",
+            "city": "hhhhhhh",
+            "flatno": "hhhhhhhhhhh",
+            "landmark": "hhhhhhhhh",
+            "zipcode": "hhhhhhh",
+            "id": 14
+        },
+        {
+            "name": "abcd",
+            "email": "accccc2@gmail.com",
+            "password": "123456",
+            "city": "sdfsdf",
+            "flatno": "sdff",
+            "landmark": "sdfsf",
+            "zipcode": "ff",
+            "id": 15
+        },
+        {
+            "name": "AMIT NEW",
+            "email": "asdasdasdaasdasdas@gmail.com",
+            "password": "123456",
+            "city": "asdasdasdasdasd",
+            "flatno": "asdasdasdasd",
+            "landmark": "asdasdasasdasd",
+            "zipcode": "asdasdasdasdasdas",
+            "id": 16
+        },
+        {
+            "name": "amit",
+            "email": "amit4@aa.com",
+            "password": "123456",
+            "city": "ahmedabad",
+            "flatno": "888",
+            "landmark": "sdffsd",
+            "zipcode": "321654",
+            "id": 17
+        },
+        {
+            "name": "Abc",
+            "email": "asdasd44@gmail.com",
+            "password": "123456",
+            "city": "Ahmedabas",
+            "flatno": "asdasd",
+            "landmark": "adasd",
+            "zipcode": "385010",
+            "id": 18
+        },
+        {
+            "name": "Abc",
+            "email": "asdasd45@gmail.com",
+            "password": "123456",
+            "city": "Ahmedabas",
+            "flatno": "asdasd",
+            "landmark": "adasd",
+            "zipcode": "385010",
+            "id": 19
+        },
+        {
+            "name": "Abc",
+            "email": "asdasd48@gmail.com",
+            "password": "123456",
+            "city": "Ahmedabas",
+            "flatno": "asdasd",
+            "landmark": "adasd",
+            "zipcode": "385010",
+            "id": 20
+        },
+        {
+            "name": "Abc",
+            "email": "asdasd50@gmail.com",
+            "password": "123456",
+            "city": "Ahmedabas",
+            "flatno": "asdasd",
+            "landmark": "adasd",
+            "zipcode": "385010",
+            "id": 21
+        }
+    ]
 }

@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getuserapi, deleteuserapi } from '../redux/actions'
 import { useNavigate } from 'react-router-dom'
+import { FormCheck } from 'react-bootstrap'
 
 const userListing = () => {
     const dispatch = useDispatch()
@@ -19,8 +20,36 @@ const userListing = () => {
         dispatch(deleteuserapi(id))
     }
 
+    const [hobby, setHobby] = useState()
+
+    const hobbies = [
+        {
+            name: 'cricket'
+        },
+        {
+            name: 'football'
+        },
+        {
+            name: 'handball'
+        }
+    ]
+
+    const handleCheck = (event) => {
+        var updatedList = [...checked]
+        if (event.target.checked) {
+            updatedList = [...checked, event.target.value]
+        } else {
+            updatedList.splice(checked.indexOf(event.target.value), 1)
+        }
+        setChecked(updatedList)
+    }
+
     return (
         <div>
+            <button type="button" onClick={() => navigate('/addedituser')}>
+                Add New-User
+            </button>
+            <br />
             {data?.map((singleUser) => {
                 return (
                     <>
@@ -49,7 +78,18 @@ const userListing = () => {
                                     {singleUser.landmark}
                                     <br />
                                     {singleUser.zipcode}
+                                    <br />
                                 </div>
+                                {/* {hobbies.map((hl, i) => {
+                                    return (
+                                        <input
+                                            type="checkbox"
+                                            id={`hobby${i}`}
+                                            value={hl.name}
+                                            onChange={handleCheck}
+                                        />
+                                    )
+                                })} */}
                                 <div>
                                     <button
                                         onClick={() =>
