@@ -12,13 +12,13 @@ import { ErrorMessage } from '@hookform/error-message'
 const userAddEdit = () => {
     const methods = useForm({ criteriaMode: 'all' })
     const { id } = useParams()
+    const ref = useRef()
     const dispatch = useDispatch()
     const { singleData, error } = useSelector((state) => state.user)
 
     function getUser() {
         return dispatch(getsigneluserapi(id))
     }
-    const ref = useRef()
 
     useEffect(() => {
         if (id) {
@@ -73,7 +73,11 @@ const userAddEdit = () => {
     return (
         <>
             <Container>
-                <div>
+                <div
+                    styke={{
+                        paddingTop: '102px'
+                    }}
+                >
                     <FormProvider {...methods}>
                         <form
                             onSubmit={methods.handleSubmit(onSubmit)}
@@ -140,8 +144,8 @@ const userAddEdit = () => {
                                     message: 'This input is number only.'
                                 })}
                             />
-
-                            <button
+                            <Button
+                                variant="success"
                                 type="submit"
                                 style={{
                                     marginLeft: '250px',
@@ -149,7 +153,7 @@ const userAddEdit = () => {
                                 }}
                             >
                                 {!id ? 'add ' : 'Update'}
-                            </button>
+                            </Button>
                         </form>
                     </FormProvider>
                 </div>

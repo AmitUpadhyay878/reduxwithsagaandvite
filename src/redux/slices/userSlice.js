@@ -21,12 +21,20 @@ const userSlice = createSlice({
         setloading: (state, action) => {
             return { ...state, isloading: true }
         },
+
+        //#region User-Listing
         setdata: (state, action) => {
             return { ...state, data: action.payload, isloading: false }
         },
+        //#endregion
+
+        //#region  Get-User-By-Id
         setsigaldata: (state, action) => {
             return { ...state, singleData: action.payload }
         },
+        //#endregion
+
+        //#region  Update-user-By-Id
         updateuser: (state, action) => {
             let da = current(state)
             return {
@@ -40,6 +48,9 @@ const userSlice = createSlice({
                 })
             }
         },
+        //#endregion
+
+        //#region Add-New-User
         adduser: (state, action) => {
             let da = current(state)
             return {
@@ -47,6 +58,9 @@ const userSlice = createSlice({
                 data: action.payload
             }
         },
+        //#endregion
+
+        //#region Delete-user-By-Id
         deleteuser: (state, action) => {
             let da = current(state)
             return {
@@ -54,18 +68,39 @@ const userSlice = createSlice({
                 data: da.data.filter((user) => user.id !== action.payload)
             }
         },
+        //#endregion
+
+        //#region Login-User
         userlogin: (state, action) => {
-            const da = current(state);
+            const da = current(state)
             return {
-              ...state,
-              data: da.data.filter(
-                (user) =>
-                  user.email === action.payload.email &&
-                  user.password === action.payload.password
-              ),
+                ...state,
+                data: da.data.filter(
+                    (user) =>
+                        user.email === action.payload.email &&
+                        user.password === action.payload.password
+                )
+            }
+        },
+        //#endregion
+
+        //#region Add-User-In-Favorite-list-By-Id
+        userfavorite: (state, action) => {
+            let da = current(state)
+            return {
+                ...state,
+                data: da.data.map((rr, i) => {
+                    if (rr.id === action.payload.id) {
+                        return action.payload
+                    } else {
+                        return rr
+                    }
+                })
             }
         }
+        //#endregion
     },
+
     extraReducers: (builder) => {
         builder.addCase('logout', (state, action) => {
             return { value: 0, data: [], isloading: false }
@@ -81,6 +116,7 @@ export const {
     updateuser,
     deleteuser,
     setloading,
-    userlogin
+    userlogin,
+    userfavorite
 } = userSlice.actions
 export default userSlice.reducer

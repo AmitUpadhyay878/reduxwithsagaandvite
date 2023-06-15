@@ -6,11 +6,16 @@ const Header = () => {
         <div
             style={{
                 width: '100%',
-                height: '20px',
+                marginBottom: '10px',
+                height: '25px',
                 backgroundColor: 'lightblue',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+
+                position: ' -webkit-sticky' /* Safari */,
+                position: 'sticky',
+                top: 0
             }}
         >
             <Link

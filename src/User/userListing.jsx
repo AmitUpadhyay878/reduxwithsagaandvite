@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getuserapi, deleteuserapi } from '../redux/actions'
 import { useNavigate } from 'react-router-dom'
-import { FormCheck } from 'react-bootstrap'
+
+import { TbJewishStar, TbJewishStarFilled } from 'react-icons/tb'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 
 const userListing = () => {
+    const [isAddwishlist, setIsAddwishlist] = useState(false)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { data } = useSelector((state) => state.user)
@@ -44,67 +48,128 @@ const userListing = () => {
         setChecked(updatedList)
     }
 
+    function handlewishlist(id, e) {
+        setIsAddwishlist((state) => !state)
+
+        if (isAddwishlist) {
+            dispatch(addUsertowishlist(true, id))
+        } else {
+            dispatch(removeUserfromwishlist(false, id))
+        }
+    }
+
     return (
-        <div>
-            <button type="button" onClick={() => navigate('/addedituser')}>
-                Add New-User
-            </button>
-            <br />
-            {data?.map((singleUser) => {
-                return (
-                    <>
-                        <div
-                            key={singleUser.id}
-                            style={{
-                                height: 'auto',
-                                width: 'auto',
-                                padding: '3px',
-                                margin: '5px',
-                                display: 'inline-block',
-                                border: '1px solid red',
-                                cursor: 'pointer'
-                            }}
-                        >
-                            <h5>
-                                <div onClick={() => handleClick(singleUser.id)}>
-                                    {singleUser.email}
-                                    <br />
-                                    {singleUser.name}
-                                    <br />
-                                    {singleUser.city}
-                                    <br />
-                                    {singleUser.flatno}
-                                    <br />
-                                    {singleUser.landmark}
-                                    <br />
-                                    {singleUser.zipcode}
-                                    <br />
-                                </div>
-                                {/* {hobbies.map((hl, i) => {
-                                    return (
-                                        <input
-                                            type="checkbox"
-                                            id={`hobby${i}`}
-                                            value={hl.name}
-                                            onChange={handleCheck}
-                                        />
-                                    )
-                                })} */}
-                                <div>
-                                    <button
-                                        onClick={() =>
-                                            deleteuser(singleUser.id)
-                                        }
-                                        style={{ zIndex: '9999' }}
+        <div
+            style={{
+                paddingTop: ' 102px',
+                marginBottom: '50px'
+            }}
+        >
+            <Container>
+                <Button
+                    variant="warning"
+                    type="button"
+                    onClick={() => navigate('/addedituser')}
+                >
+                    Add New-User
+                </Button>
+                <br />
+                <Row>
+                    {data?.map((singleUser) => {
+                        return (
+                            <>
+                                <Col>
+                                    <div
+                                        key={singleUser.id}
+                                        style={{
+                                            padding: '3px',
+                                            border: '1px solid red',
+                                            cursor: 'pointer',
+                                            margin: '3px 0px'
+                                        }}
                                     >
-                                        delete
-                                    </button>
-                                </div>
-                            </h5>
-                        </div>
-                    </>
-                )
-            })}
+                                        <h5>
+                                            <div>
+                                                {isAddwishlist ? (
+                                                    <TbJewishStarFilled
+                                                        onClick={(e) =>
+                                                            handlewishlist(
+                                                                e,
+                                                                singleUser.id
+                                                            )
+                                                        }
+                                                    />
+                                                ) : (
+                                                    <TbJewishStar
+                                                        onClick={(e) =>
+                                                            handlewishlist(
+                                                                e,
+                                                                singleUser.id
+                                                            )
+                                                        }
+                                                    />
+                                                )}
+                                            </div>
+                                            <br />
+                                            <div
+                                                onClick={() =>
+                                                    handleClick(singleUser.id)
+                                                }
+                                            >
+                                                {singleUser.email}
+                                                <br />
+                                                {singleUser.name}
+                                                <br />
+                                                {singleUser.city}
+                                                <br />
+                                                {singleUser.flatno}
+                                                <br />
+                                                {singleUser.landmark}
+                                                <br />
+                                                {singleUser.zipcode}
+                                                <br />
+                                            </div>
+                                            <br />
+                                            {hobbies.map((hl, i) => {
+                                                return (
+                                                    <>
+                                                        <div>
+                                                            <input
+                                                                type="checkbox"
+                                                                id={`hobby${i}`}
+                                                                value={hl.name}
+                                                                onChange={
+                                                                    handleCheck
+                                                                }
+                                                            />
+                                                            <label>
+                                                                {hl.name}
+                                                            </label>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })}
+                                            <br />
+                                            <div>
+                                                <button
+                                                    onClick={() =>
+                                                        deleteuser(
+                                                            singleUser.id
+                                                        )
+                                                    }
+                                                    style={{ zIndex: '9999' }}
+                                                >
+                                                    delete
+                                                </button>
+                                            </div>
+                                        </h5>
+                                    </div>
+                                </Col>
+                            </>
+                        )
+                    })}
+                </Row>
+            </Container>
         </div>
     )
 }
