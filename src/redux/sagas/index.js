@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-
+import RequestApi from '../../request/Request'
 import {
     deleteuser,
     setdata,
@@ -10,8 +10,8 @@ import {
 } from '../slices/userSlice'
 import {
     addNewuserapi,
+    addUsertowishlistapi,
     deleteuserapi,
-    favoritelistapi,
     getsigneluserapi,
     getuserapi,
     loginapi,
@@ -32,19 +32,22 @@ function* fetchUser() {
 
 //#region USER-ADD
 function* addUser(params) {
+    const { payload } = params
     yield put(setloading())
-    const data = yield fetch(`http://localhost:3000/users`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(params.payload)
-    })
+    // const data = yield fetch(`http://192.168.1.3:3000/api/v1/user/signup`, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(params.payload)
+    // })
 
-    localStorage.setItem('user', JSON.stringify(params.payload))
+    const data = yield RequestApi.post(`user/signup`, payload, {}, false)
+
+    localStorage.setItem('user', JSON.stringify(payload))
     const res = yield data.json()
 
-    yield put(updateuser(params.payload))
+    yield put(updateuser(payload))
 }
 //#endregion
 
@@ -91,27 +94,40 @@ function* deleteUser(params) {
 
 //#region  USER-LOGIN
 function* loginUser(params) {
-    console.log(params, 'params')
+    const { payload } = params
+
     yield put(setloading())
-    // &password=${params.password}
-    const data = yield fetch(
-        `http://localhost:3000/users?email=${params.payload.email}`
-    )
-    const res = yield data.json()
-    yield put(userlogin(params.payload))
+    try {
+        const data = yield RequestApi.post(`user/login`, payload, {}, false)
+
+        localStorage.setItem('user', JSON.stringify(data?.data))
+        localStorage.setItem('userToken', JSON.stringify(data?.meta?.tokenData))
+        yield put(userlogin(data))
+    } catch (e) {
+        console.log(e, 'err')
+    }
 }
 //#endregion
 
 //#region  USER-FAVORITE-LIST
 function* favoritetUser(params) {
-    console.log(params, 'params')
+    let { id, ...rest } = params.payload
     yield put(setloading())
-    // &password=${params.password}
-    const data = yield fetch(
-        `http://localhost:3000/users?id=${params.payload.id}`
-    )
+    const data = yield fetch(`http://localhost:3000/users/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            ...(params.payload.favoriteUser = [
+                ...params.payload.favoriteUser,
+                id
+            ])
+        })
+    })
     const res = yield data.json()
-    yield put(userlogin(params.payload))
+
+    yield put(updateuser(params.payload))
 }
 //#endregion
 
@@ -122,7 +138,7 @@ function* mySaga() {
     yield takeLatest(deleteuserapi().type, deleteUser)
     yield takeLatest(addNewuserapi().type, addUser)
     yield takeLatest(loginapi().type, loginUser)
-    yield takeLatest(favoritelistapi().type, favoritetUser)
+    yield takeLatest(addUsertowishlistapi().type, favoritetUser)
 }
 
 export default mySaga

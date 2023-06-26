@@ -29,42 +29,47 @@ const userAddEdit = () => {
             ref.current.children[2].value = ''
             ref.current.children[3].value = ''
             ref.current.children[4].value = ''
-            ref.current.children[5].value = ''
         }
     }, [])
 
     useEffect(() => {
         if (singleData) {
-            ref.current.children[0].value = singleData.name
-            ref.current.children[1].value = singleData.email
-            ref.current.children[2].value = singleData.city
-            ref.current.children[3].value = singleData.flatno
-            ref.current.children[4].value = singleData.landmark
-            ref.current.children[5].value = singleData.zipcode
+            ref.current.children[0].value = singleData.firstname
+            ref.current.children[1].value = singleData.lastname
+            ref.current.children[2].value = singleData.email
+            ref.current.children[3].value = singleData.password
+            ref.current.children[4].value = singleData.phoneNo
         } else {
             ref.current.children[0].value = ''
             ref.current.children[1].value = ''
             ref.current.children[2].value = ''
             ref.current.children[3].value = ''
             ref.current.children[4].value = ''
-            ref.current.children[5].value = ''
         }
     }, [singleData])
 
     const onSubmit = (data) => {
+        console.log(data, 'data')
         if (!id) {
-            dispatch(addNewuserapi(data))
+            dispatch(
+                addNewuserapi({
+                    firstName: data.firstname,
+                    lastName: data.lastname,
+                    email: data.email,
+                    password: data.password,
+                    phoneNo: data.phonno
+                })
+            )
         } else {
             // console.log(data)
             dispatch(
                 updateuserapi({
                     ...singleData,
-                    city: data.city,
-                    name: data.name,
+                    firstName: data.firstname,
+                    lastName: data.lastname,
                     email: data.email,
-                    flatno: data.flatno,
-                    zipcode: data.zipcode,
-                    landmark: data.landmark
+                    password: data.password,
+                    phoneNo: data.phonno
                 })
             )
         }
@@ -97,49 +102,41 @@ const userAddEdit = () => {
                             />
                             <input
                                 type="text"
-                                placeholder="Enter Name"
-                                {...methods.register('name', {
+                                placeholder="Enter first Name"
+                                {...methods.register('firstname', {
+                                    required: true,
+                                    message: 'This input is firstname'
+                                })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Enter last Name"
+                                {...methods.register('lastname', {
                                     required: true,
                                     message: 'This input is number only.'
                                 })}
                             />
                             <input
-                                type="text"
-                                placeholder="Enter Email"
+                                type="email"
+                                placeholder="Enter email"
                                 {...methods.register('email', {
                                     required: true,
-                                    message: 'This input is number only.'
+                                    message: 'This input isemail.'
                                 })}
                             />
                             <input
-                                type="text"
-                                placeholder="Enter City"
-                                {...methods.register('city', {
+                                type="password"
+                                placeholder="Enter password"
+                                {...methods.register('password', {
                                     required: true,
-                                    message: 'This input is number only.'
+                                    message: 'This input isemail.'
                                 })}
                             />
 
                             <input
                                 type="text"
-                                placeholder="Enter flatno"
-                                {...methods.register('flatno', {
-                                    required: true,
-                                    message: 'This input is number only.'
-                                })}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Enter landmark"
-                                {...methods.register('landmark', {
-                                    required: true,
-                                    message: 'This input is number only.'
-                                })}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Enter zipcode"
-                                {...methods.register('zipcode', {
+                                placeholder="Enter phone No"
+                                {...methods.register('phonno', {
                                     required: true,
                                     message: 'This input is number only.'
                                 })}

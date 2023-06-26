@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getuserapi, deleteuserapi } from '../redux/actions'
+import {
+    getuserapi,
+    deleteuserapi,
+    addUsertowishlistapi
+} from '../redux/actions'
 import { useNavigate } from 'react-router-dom'
 
 import { TbJewishStar, TbJewishStarFilled } from 'react-icons/tb'
@@ -8,6 +12,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 
 const userListing = () => {
     const [isAddwishlist, setIsAddwishlist] = useState(false)
+    const [isAddwishlistdata, setIsAddwishlistdata] = useState([])
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -25,7 +30,7 @@ const userListing = () => {
     }
 
     const [hobby, setHobby] = useState()
-
+    
     const hobbies = [
         {
             name: 'cricket'
@@ -49,12 +54,12 @@ const userListing = () => {
     }
 
     function handlewishlist(id, e) {
-        setIsAddwishlist((state) => !state)
+        setIsAddwishlist(id)
 
         if (isAddwishlist) {
-            dispatch(addUsertowishlist(true, id))
+            dispatch(addUsertowishlistapi(id))
         } else {
-            dispatch(removeUserfromwishlist(false, id))
+            // dispatch(removeUserfromwishlistapi(id))
         }
     }
 
@@ -90,20 +95,17 @@ const userListing = () => {
                                     >
                                         <h5>
                                             <div>
-                                                {isAddwishlist ? (
+                                                {isAddwishlist ==
+                                                singleUser.id ? (
                                                     <TbJewishStarFilled
-                                                        onClick={(e) =>
-                                                            handlewishlist(
-                                                                e,
-                                                                singleUser.id
-                                                            )
+                                                        onClick={() =>
+                                                            handlewishlist(null)
                                                         }
                                                     />
                                                 ) : (
                                                     <TbJewishStar
-                                                        onClick={(e) =>
+                                                        onClick={() =>
                                                             handlewishlist(
-                                                                e,
                                                                 singleUser.id
                                                             )
                                                         }

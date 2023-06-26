@@ -9,11 +9,11 @@ const Login = () => {
         register,
         handleSubmit,
         formState: { errors },
-        watch
     } = useForm()
 
     const onSubmit = (data) => {
-        dispatch(loginapi(data))
+        const { email, password } = data
+        dispatch(loginapi({ email: email, password: password }))
     }
 
     return (

@@ -1,7 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, Navigate } from 'react-router-dom'
 
 const Header = () => {
+
     return (
         <div
             style={{
@@ -13,22 +15,16 @@ const Header = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
 
-                position: ' -webkit-sticky' /* Safari */,
+                // position: ' -webkit-sticky' /* Safari */,
                 position: 'sticky',
                 top: 0
             }}
         >
             <Link
-                to="/sign-in"
+                to="/home"
                 style={{ margin: '5px', textDecoration: 'none', color: 'red' }}
             >
-                <h3>Log-In</h3>
-            </Link>
-            <Link
-                to="/"
-                style={{ margin: '5px', color: 'red', textDecoration: 'none' }}
-            >
-                <h3>Listing</h3>
+                <h3>Home</h3>
             </Link>
         </div>
     )

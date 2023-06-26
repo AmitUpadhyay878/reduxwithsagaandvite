@@ -4,7 +4,8 @@ const initialState = {
     value: 0,
     data: [],
     isloading: false,
-    singleData: null
+    singleData: null,
+    isLoggedin: false
 }
 
 const userSlice = createSlice({
@@ -24,7 +25,11 @@ const userSlice = createSlice({
 
         //#region User-Listing
         setdata: (state, action) => {
-            return { ...state, data: action.payload, isloading: false }
+            return {
+                ...state,
+                data: action.payload,
+                isloading: false
+            }
         },
         //#endregion
 
@@ -79,7 +84,9 @@ const userSlice = createSlice({
                     (user) =>
                         user.email === action.payload.email &&
                         user.password === action.payload.password
-                )
+                ),
+                isLoggedin: true,
+                singleData: action.payload
             }
         },
         //#endregion
@@ -87,6 +94,8 @@ const userSlice = createSlice({
         //#region Add-User-In-Favorite-list-By-Id
         userfavorite: (state, action) => {
             let da = current(state)
+
+            console.log(da, 'dfsdf')
             return {
                 ...state,
                 data: da.data.map((rr, i) => {
